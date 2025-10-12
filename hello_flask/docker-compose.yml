@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8
+    container_name: flask-project-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - db_data:/var/lib/mysql
+
+  web:
+    image: 058264496251.dkr.ecr.eu-west-2.amazonaws.com/flask-project:latest
+    container_name: flask-project-web
+    ports:
+      - "5002:5002"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: my-secret-pw
+      DB_NAME: mydatabase
+    depends_on:
+      - db
+
+volumes:
+  db_data:
