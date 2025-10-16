@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redis Counter App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 80px 20px;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .count {
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 20px 50px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    footer {
+      margin-top: 3rem;
+      font-style: italic;
+      opacity: 0.9;
+      font-size: 1.2rem;
+      transition: opacity 1s ease-in-out;
+    }
+    footer.fade-out {
+      opacity: 0;
+    }
+    footer.fade-in {
+      opacity: 1;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Redis Counter App 👋</h1>
+  <p class="count">Visits so far: {{ count }}</p>
+
+  <footer id="quote">{{ quote }}</footer>
+
+  <p style="margin-top: 2rem;">
+    <a href="https://github.com/nabilislam30" target="_blank">View on GitHub</a>
+  </p>
+
+  <script>
+    const quotes = [
+      "Innovation starts with curiosity.",
+      "Keep it simple, make it reliable.",
+      "Every refresh is a new beginning.",
+      "Docker today, architect tomorrow.",
+      "Build. Break. Learn. Repeat.",
+      "Automate what you can. Learn what you can’t."
+    ];
+
+    const quoteEl = document.getElementById("quote");
+
+    function fadeQuote() {
+      quoteEl.classList.remove("fade-in");
+      quoteEl.classList.add("fade-out");
+
+      setTimeout(() => {
+        const newQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        quoteEl.textContent = `“${newQuote}”`;
+        quoteEl.classList.remove("fade-out");
+        quoteEl.classList.add("fade-in");
+      }, 1000);
+    }
+
+    setInterval(fadeQuote, 5000); // change every 5 seconds
+  </script>
+</body>
+</html>
