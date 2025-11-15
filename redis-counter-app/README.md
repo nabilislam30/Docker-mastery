@@ -26,3 +26,6 @@ This project is part of the **Docker-mastery** repository and showcases:
 ```bash
 git clone https://github.com/nabilislam30/Docker-mastery.git
 cd Docker-mastery/redis-counter-app
+docker compose up --build -d
+docker compose up -d --scale web=3
+Visit in your browser: http://localhost:5050
